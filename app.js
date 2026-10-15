@@ -10717,6 +10717,9 @@ AI: ${firstModelContent}`;
         requestBody.temperature = config.temperature ?? 0.7;
         requestBody.top_p = config.topP ?? 1;
       }
+        if (providerName === 'DeepSeek') {
+    requestBody.thinking = { type: 'disabled' };
+}
       const systemText = extractSystemText(systemInstruction);
       if (systemText) requestBody.messages.push({ role: "system", content: systemText });
       this.convertGeminiToOpenAIFormat(messages).forEach((msg) => requestBody.messages.push(msg));
