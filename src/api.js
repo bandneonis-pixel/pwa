@@ -1691,9 +1691,10 @@ export const apiUtils = {
         }
         
 // DeepSeek V4系のThinking Modeをオフにする（小説生成の句点過多対策）
-if (providerName === 'DeepSeek') {
-    requestBody.thinking = { type: 'disabled' };
-}
+// テスト：条件なしで必ず入れる
+requestBody.thinking = { type: 'disabled' };
+console.log('[DEBUG] DeepSeek requestBody:', requestBody);
+console.log('[DEBUG] providerName:', providerName);
         
         const systemText = extractSystemText(systemInstruction);
         if (systemText) requestBody.messages.push({ role: 'system', content: systemText });
